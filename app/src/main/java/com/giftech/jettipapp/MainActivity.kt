@@ -3,6 +3,7 @@ package com.giftech.jettipapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -24,6 +25,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyApp {
                 TopHeader()
+                MainContent()
             }
         }
     }
@@ -35,12 +37,13 @@ fun MyApp(content: @Composable () -> Unit) {
         Surface(
             color = MaterialTheme.colors.background
         ) {
-            content()
+            Column {
+                content()
+            }
         }
     }
 }
 
-@Preview
 @Composable
 fun TopHeader(totalPerPerson: Double = 0.0) {
     val total = "%.2f".format(totalPerPerson)
@@ -68,11 +71,27 @@ fun TopHeader(totalPerPerson: Double = 0.0) {
     }
 }
 
+@Preview
+@Composable
+fun MainContent() {
+    Surface(
+        Modifier
+            .padding(2.dp)
+            .fillMaxWidth(),
+        shape = RoundedCornerShape(8.dp),
+        border = BorderStroke(1.dp, Color.LightGray)
+    ) {
+        Column() {
+
+        }
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     MyApp {
-        Text(text = "Shit")
+        TopHeader()
+        MainContent()
     }
 }
