@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApp {
-                Text(text = "shit")
+                TopHeader()
             }
         }
     }
@@ -33,7 +33,6 @@ class MainActivity : ComponentActivity() {
 fun MyApp(content: @Composable () -> Unit) {
     JetTipAppTheme {
         Surface(
-            modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background
         ) {
             content()
