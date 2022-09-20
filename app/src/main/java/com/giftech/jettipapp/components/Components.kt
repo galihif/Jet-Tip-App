@@ -30,7 +30,7 @@ fun InputField(
     onAction: KeyboardActions = KeyboardActions.Default
 ) {
     OutlinedTextField(
-        modifier = modifier.padding(10.dp),
+        modifier = modifier.padding(bottom = 8.dp, start = 8.dp, end = 8.dp),
         value = valueState.value,
         onValueChange = { valueState.value = it },
         label = { Text(labelId) },
