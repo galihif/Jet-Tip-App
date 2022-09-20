@@ -1,6 +1,7 @@
 package com.giftech.jettipapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -83,7 +84,18 @@ fun TopHeader(totalPerPerson: Double = 0.0) {
 @Preview
 @Composable
 fun MainContent() {
-    val totalBillState = remember{
+    BillForm { billAmount ->
+        Log.d("GALIH", "MainContent: $billAmount")
+    }
+}
+
+@ExperimentalComposeUiApi
+@Composable
+fun BillForm(
+    modifier: Modifier = Modifier,
+    onValChange: (String) -> Unit = {}
+) {
+    val totalBillState = remember {
         mutableStateOf("")
     }
     val validState = remember(totalBillState.value) {
@@ -105,7 +117,8 @@ fun MainContent() {
                 enabled = true,
                 isSingleLine = true,
                 onAction = KeyboardActions {
-                    if(!validState) return@KeyboardActions
+                    if (!validState) return@KeyboardActions
+                    onValChange(totalBillState.value.trim())
                     keyboardController?.hide()
                 }
             )
