@@ -1,5 +1,6 @@
 package com.giftech.jettipapp.components
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -30,7 +31,9 @@ fun InputField(
     onAction: KeyboardActions = KeyboardActions.Default
 ) {
     OutlinedTextField(
-        modifier = modifier.padding(bottom = 8.dp, start = 8.dp, end = 8.dp),
+        modifier = modifier
+            .padding(bottom = 8.dp, start = 8.dp, end = 8.dp)
+            .fillMaxWidth(),
         value = valueState.value,
         onValueChange = { valueState.value = it },
         label = { Text(labelId) },

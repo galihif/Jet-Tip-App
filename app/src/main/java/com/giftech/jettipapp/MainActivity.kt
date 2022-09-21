@@ -119,7 +119,6 @@ fun BillForm(
             horizontalAlignment = Alignment.Start
         ) {
             InputField(
-                modifier = Modifier.fillMaxWidth(),
                 valueState = totalBillState,
                 labelId = "Enter Bill",
                 enabled = true,
