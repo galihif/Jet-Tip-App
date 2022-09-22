@@ -64,6 +64,7 @@ fun TopHeader(totalPerPerson: Double = 0.0) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(16.dp)
             .height(150.dp)
             .clip(shape = RoundedCornerShape(16.dp)),
         color = Color(0xFFE9D7F7)
@@ -194,7 +195,10 @@ fun BillForm(
                 Spacer(Modifier.height(12.dp))
                 Slider(
                     value = sliderPositionState.value,
-                    onValueChange = {sliderPositionState.value = it}
+                    onValueChange = {sliderPositionState.value = it},
+                    onValueChangeFinished = {},
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    steps = 5
                 )
             }
 //            } else {
