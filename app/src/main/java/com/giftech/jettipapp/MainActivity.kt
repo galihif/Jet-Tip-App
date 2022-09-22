@@ -118,6 +118,7 @@ fun BillForm(
     val sliderPositionState = remember {
         mutableStateOf(0f)
     }
+    val tipPercentage = (sliderPositionState.value*100).toInt()
     Surface(
         Modifier
             .padding(4.dp)
@@ -191,7 +192,7 @@ fun BillForm(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    "${sliderPositionState.value*100}%",
+                    "$tipPercentage%",
                     Modifier.align(Alignment.CenterHorizontally)
                 )
                 Spacer(Modifier.height(12.dp))
