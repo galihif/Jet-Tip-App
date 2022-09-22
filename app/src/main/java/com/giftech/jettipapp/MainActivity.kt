@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Slider
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -106,6 +107,14 @@ fun BillForm(
         totalBillState.value.trim().isNotEmpty()
     }
     val keyboardController = LocalSoftwareKeyboardController.current
+
+    val peopleState = remember {
+        mutableStateOf(1)
+    }
+
+    val sliderPositionState = remember {
+        mutableStateOf(0f)
+    }
     Surface(
         Modifier
             .padding(4.dp)
@@ -129,7 +138,7 @@ fun BillForm(
                     keyboardController?.hide()
                 }
             )
-            if (validState) {
+//            if (validState) {
                 Row(
                     modifier = Modifier.padding(3.dp),
                     horizontalArrangement = Arrangement.Start,
@@ -145,17 +154,52 @@ fun BillForm(
                     ) {
                         RoundIconButton(
                             imageVector = Icons.Default.Remove,
-                            onClick = { }
+                            onClick = {
+                                if (peopleState.value > 1) peopleState.value -= 1
+                            }
+                        )
+                        Text(
+                            "${peopleState.value}",
+                            Modifier
+                                .align(Alignment.CenterVertically)
+                                .padding(horizontal = 8.dp)
                         )
                         RoundIconButton(
                             imageVector = Icons.Default.Add,
-                            onClick = { }
+                            onClick = { peopleState.value += 1 }
                         )
                     }
                 }
-            } else {
-                Box {}
+                Row(
+                    Modifier.padding(horizontal = 4.dp, vertical = 12.dp)
+                ) {
+                    Text(
+                        "text",
+                        Modifier.align(Alignment.CenterVertically)
+                    )
+                    Spacer(Modifier.width(200.dp))
+                    Text(
+                        "$100",
+                        Modifier.align(Alignment.CenterVertically)
+                    )
+                }
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    "${sliderPositionState.value*100}%",
+                    Modifier.align(Alignment.CenterHorizontally)
+                )
+                Spacer(Modifier.height(12.dp))
+                Slider(
+                    value = sliderPositionState.value,
+                    onValueChange = {sliderPositionState.value = it}
+                )
             }
+//            } else {
+//                Box {}
+//            }
         }
     }
 }
